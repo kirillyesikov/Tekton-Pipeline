@@ -5,7 +5,7 @@ metadata:
 spec:
   params:
   - name: image-registry
-    default: gcr.io/christiewilson-catfactory
+    default: docker.io/kyesikov
   workspaces:
   - name: git-source
   tasks:
@@ -14,7 +14,7 @@ spec:
       name: git-clone
     params:
     - name: url
-      value: https://github.com/GoogleContainerTools/skaffold
+      value: https://github.com/kirillyesikov/dashRadio
     - name: revision
       value: main
     workspaces:
@@ -26,11 +26,9 @@ spec:
       name: kaniko
     params:
     - name: IMAGE
-      value: $(params.image-registry)/getting-started
-    - name: CONTEXT
-      value: examples/getting-started
+      value: $(params.image-registry)/dashRadio
     - name: DOCKERFILE
-      value: $(workspaces.source.path)/examples/getting-started/Dockerfile
+      value: $(workspaces.source.path)/kyesikov/dashRadio/Dockerfile
     workspaces:
     - name: source
       workspace: git-source
